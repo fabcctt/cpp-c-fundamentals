@@ -8,6 +8,7 @@ int main()
    
    for(int i = 0; i < 5; i++)
    {
+       std::cout << "[" << i << "] Num " << i << ": ";
        std::cin>>enterednum;
        nums.push_back(enterednum);
    }
