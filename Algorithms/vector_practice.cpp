@@ -5,6 +5,7 @@ int main()
 {
    std::vector<int> nums;
    int enterednum;
+   int sum = 0;
    
    for(int i = 0; i < 5; i++)
    {
@@ -15,6 +16,8 @@ int main()
    for(int i = 0; i < nums.size(); i++)
    {
        std::cout<<nums[i] << ", ";
+       sum += nums[i];
    }
+   std::cout << "\nSum: " << sum;
     return 0;
 }
