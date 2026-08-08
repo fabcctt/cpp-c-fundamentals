@@ -1,30 +1,27 @@
 #include <iostream>
 #include <string>
 class Person {
-    public:
+    private:
     std::string name;
     int age;
-
-    void print()
-    {
-        std::cout << "Name: " << name << "\nAge: " << age << "\n";
-    }
-};
-class Student: public Person {
     public:
-    double grade;
-    void print_grade()
-    {
-        std::cout << "Grade: " << grade << "\n";
+    Person(std::string n, int a) : name(n), age(a){}
+    void print() const {
+        std::cout << "Name: " << name << "\nAge: " << age << std::endl;
     }
 };
 int main(void)
 {
-    Student s1;
-    s1.name = "Luca";
-    s1.age = 20;
-    s1.grade = 9.5;
-    s1.print();
-    s1.print_grade();
+    std::string inpName;
+    int inpAge;
+    std::cout << "Name: ";
+    std::getline(std::cin, inpName);
+    std::cout << "Age: ";
+    if (!(std::cin >> inpAge)) {
+        std::cout << "Do a correct entry";
+        return 1;
+    }
+    Person p(inpName, inpAge);
+    p.print();
     return 0;
 }

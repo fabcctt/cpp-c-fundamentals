@@ -1,53 +1,42 @@
 #include <iostream>
-#include <cstring>
-#include <cstdlib>
-void verify_user(char verifiedUser [50], char user[50]);
-void verify_password(std::string verifiedPassword, std::string password);
-int main()
-{
-    char user [50];
-    char verifiedUser [50];
+#include <string>
+class UserAuth {
+private:
+    std::string username;
     std::string password;
-    std::string verifiedPassword;
-    std::cout << "Welcome, Whats your username?: ";
-    fgets(user, sizeof(user), stdin);
-    user[strcspn(user, "\n")] = 0;
-    std::cout << "Hello " << user << ", " << "Whats your password?: ";
-    std::cin >> password;
-    std::cout << "==Welcome to Log In.==\n";
-    std::cout << "What was your username?: \n";
-    std::cin.ignore();
-    fgets(verifiedUser, sizeof(verifiedUser), stdin);
-    verifiedUser[strcspn(verifiedUser, "\n")] = 0;
-    verify_user(verifiedUser, user);
-    std::cout << "What was your password?: ";
-    std::cin >> verifiedPassword;
-    verify_password(verifiedPassword, password);
+
+public:
+    UserAuth(const std::string& u, const std::string& p) : username(u), password(p) {}
+    bool verifyUser(const std::string& u) const {
+        return username == u;
+    }
+    bool verifyPassword(const std::string& p) const {
+        return password == p;
+    }
+};
+int main() {
+    std::string u, p;
+    std::cout << "Welcome! Set your username: ";
+    std::getline(std::cin, u);
+    std::cout << "Set your password: ";
+    std::getline(std::cin, p);
+    UserAuth account(u, p);
+    std::cout << "\n== Welcome to Log In ==\n";
+    std::string inputUser, inputPass;
+    std::cout << "Enter username: ";
+    std::getline(std::cin, inputUser);
+    if (!account.verifyUser(inputUser)) {
+        std::cout << "Incorrect username.\n";
+        return 1;
+    }
+    std::cout << "Correct username.\n";
+    std::cout << "Enter password: ";
+    std::getline(std::cin, inputPass);
+    if (!account.verifyPassword(inputPass)) {
+        std::cout << "Incorrect password.\n";
+        return 1;
+    }
+    std::cout << "Correct password. Welcome!\n";
 
     return 0;
-}
-
-void verify_user(char verifiedUser [50], char user[50])
-{
-    if (strcmp(verifiedUser, user) == 0)
-    {
-        std::cout << "Correct username.\n";
-    }
-    else
-    {
-        std::cout << "Incorrect username.\n";
-        std::exit(0);
-    }
-}
-void verify_password(std::string verifiedPassword, std::string password)
-{
-    if (verifiedPassword == password)
-    {
-        std::cout << "Correct password.\n";
-    }
-    else
-    {
-        std::cout << "Incorrect password\n";
-        std::exit(0);
-    }
 }

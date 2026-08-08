@@ -5,16 +5,9 @@ private:
     std::string title;
     int pages;
 public:
-    Book(std::string t, int p) {
-        title = t;
-        pages = p;
-    }
-    bool isLong() {
-        if(pages > 300) {
-            return true;
-        } else {
-            return false;
-        }
+    Book(std::string t, int p) : title(t), pages(p){}
+    bool isLong() const {
+        return pages > 300;
     }
 };
 int main() {
