@@ -38,7 +38,7 @@ class BST {
     TreeNode* findMaxHelper(TreeNode* node) {
         if(node == nullptr) return nullptr;
         while(node->right != nullptr) {
-            node = node->right; // Corregido: va a la derecha
+            node = node->right;
         }
         return node;
     }
@@ -52,8 +52,8 @@ class BST {
 
     void PostOrderhelper(TreeNode* node) {
         if(node == nullptr) return;
-        PostOrderhelper(node->left);  // Corregido: recursión a PostOrder
-        PostOrderhelper(node->right); // Corregido: recursión a PostOrder
+        PostOrderhelper(node->left);
+        PostOrderhelper(node->right);
         std::cout << node->value << std::endl;
     }
 
@@ -94,22 +94,22 @@ class BST {
 
     int findMin() {
         TreeNode* minNode = findMinHelper(root);
-        if(minNode == nullptr) return -1; // Corregido: cambiar 'while' por 'if'
+        if(minNode == nullptr) return -1;
         return minNode->value;
     }
 
     int findMax() {
         TreeNode* maxNode = findMaxHelper(root);
-        if(maxNode == nullptr) return -1; // Corregido: cambiar 'while' por 'if'
+        if(maxNode == nullptr) return -1;
         return maxNode->value;
     }
 
-    void preOrder() { // Corregido: tipo 'void'
+    void preOrder() {
         PreOrderHelper(root);
         std::cout << std::endl;
     }
 
-    void postOrder() { // Corregido: tipo 'void'
+    void postOrder() {
         PostOrderhelper(root);
         std::cout << std::endl;
     }
