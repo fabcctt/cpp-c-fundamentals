@@ -7,7 +7,7 @@ class Calcule {
     int sum() const {
         return num1 + num2;
     }
-    void print() {
+    void print() const {
         std::cout << num1 << " + " << num2 << ": " << sum();
     }
 };
