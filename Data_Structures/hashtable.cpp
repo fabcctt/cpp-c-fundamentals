@@ -14,7 +14,6 @@ class HashTable {
                 buckets[i] = nullptr;
             }
         }
-
         void insert(int value) {
             int index = value % 10;
             Node* newNode = new Node{value, nullptr};
@@ -26,7 +25,6 @@ class HashTable {
                 buckets[index] = newNode;
             }
         }
-
         bool search(int value) {
             int index = value % 10;
             Node* current = buckets[index];
@@ -37,20 +35,19 @@ class HashTable {
                 }
                 current = current->next;
             }
-
             return false;
         }
         void printTable() {
-           for (int i = 0; i < 10; i++) {
-             std::cout << "Bucket " << i << ": ";
-             Node* current = buckets[i];
-           while (current != nullptr) {
-            std::cout << current->value << " ";
-            current = current->next;
+            for (int i = 0; i < 10; i++) {
+                std::cout << "Bucket " << i << ": ";
+                Node* current = buckets[i];
+                while (current != nullptr) {
+                    std::cout << current->value << " ";
+                    current = current->next;
+                }
+                std::cout << std::endl;
+            }
         }
-        std::cout << std::endl;
-    }
-}
 };
 
 int main() {
@@ -58,6 +55,7 @@ int main() {
     table.insert(23);
     table.insert(13);
     table.insert(7);
+
     table.printTable();
 
     std::cout << std::boolalpha;
